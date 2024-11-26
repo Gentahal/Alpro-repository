@@ -10,7 +10,6 @@ public class SoalDua {
         System.out.print("Masukkan nilai y: ");
         int y = scanner.nextInt();
 
-        // Menghitung x kuadrat tanpa menggunakan Math.pow
         int xSquared = x * x;
         
         double fx = (1.0 / (3 * xSquared + 10)) + 10 * y + 7;
