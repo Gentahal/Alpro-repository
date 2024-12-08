@@ -3,19 +3,17 @@ package MiniTugas;
 import java.util.Scanner;
 
 public class ServiceMotor {
-    // Array untuk menyimpan data
     static String[] namaPelanggan = new String[100];
     static String[] jamMasuk = new String[100];
     static int[] estimasiLama = new int[100];
     static String[] estimasiSelesai = new String[100];
-    static int jumlahData = 0; // Menyimpan jumlah data yang ada
+    static int jumlahData = 0; 
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int pilihan;
 
         do {
-            // Menu utama
             System.out.println("\n--- Aplikasi Service Motor ---");
             System.out.println("1. Tambah Data Service");
             System.out.println("2. Hapus Data Service");
@@ -25,7 +23,7 @@ public class ServiceMotor {
             System.out.println("6. Keluar");
             System.out.print("Pilihan: ");
             pilihan = scanner.nextInt();
-            scanner.nextLine(); // Membersihkan buffer
+            scanner.nextLine(); 
 
             switch (pilihan) {
                 case 1:
@@ -63,9 +61,8 @@ public class ServiceMotor {
 
         System.out.print("Masukkan estimasi lama service (jam): ");
         estimasiLama[jumlahData] = scanner.nextInt();
-        scanner.nextLine(); // Membersihkan buffer
+        scanner.nextLine(); 
 
-        // Hitung estimasi waktu selesai
         estimasiSelesai[jumlahData] = hitungEstimasiSelesai(jamMasuk[jumlahData], estimasiLama[jumlahData]);
 
         jumlahData++;
@@ -80,7 +77,6 @@ public class ServiceMotor {
         for (int i = 0; i < jumlahData; i++) {
             if (namaPelanggan[i].equalsIgnoreCase(nama)) {
                 ditemukan = true;
-                // Geser data ke atas
                 for (int j = i; j < jumlahData - 1; j++) {
                     namaPelanggan[j] = namaPelanggan[j + 1];
                     jamMasuk[j] = jamMasuk[j + 1];
@@ -108,8 +104,7 @@ public class ServiceMotor {
                 ditemukan = true;
                 System.out.print("Masukkan estimasi lama service baru (jam): ");
                 estimasiLama[i] = scanner.nextInt();
-                scanner.nextLine(); // Membersihkan buffer
-                // Hitung ulang estimasi waktu selesai
+                scanner.nextLine(); 
                 estimasiSelesai[i] = hitungEstimasiSelesai(jamMasuk[i], estimasiLama[i]);
                 System.out.println("Data berhasil diubah.");
                 break;
