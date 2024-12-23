@@ -55,19 +55,27 @@ public class ServiceMotor {
     static void tambahData(Scanner scanner) {
         System.out.print("Masukkan nama pelanggan: ");
         namaPelanggan[jumlahData] = scanner.nextLine();
-
-        System.out.print("Masukkan jam masuk (format HH:mm): ");
-        jamMasuk[jumlahData] = scanner.nextLine();
-
+    
+        String jam;
+        do {
+            System.out.print("Masukkan jam masuk (format HH:mm): ");
+            jam = scanner.nextLine();
+            if (!validasiJamMasuk(jam)) {
+                System.out.println("Format jam masuk tidak valid. Harus dalam format HH:mm dan berada dalam rentang 00:00 hingga 23:59.");
+            }
+        } while (!validasiJamMasuk(jam));
+        jamMasuk[jumlahData] = jam;
+    
         System.out.print("Masukkan estimasi lama service (jam): ");
         estimasiLama[jumlahData] = scanner.nextInt();
         scanner.nextLine(); 
-
+    
         estimasiSelesai[jumlahData] = hitungEstimasiSelesai(jamMasuk[jumlahData], estimasiLama[jumlahData]);
-
+    
         jumlahData++;
         System.out.println("Data berhasil ditambahkan.");
     }
+    
 
     static void hapusData(Scanner scanner) {
         System.out.print("Masukkan nama pelanggan yang ingin dihapus: ");
@@ -160,4 +168,17 @@ public class ServiceMotor {
 
         return String.format("%02d:%02d", jam, menit);
     }
+
+    static boolean validasiJamMasuk(String jam) {
+        if (!jam.matches("\\d{2}:\\d{2}")) {
+            return false; // Format tidak sesuai
+        }
+    
+        String[] waktu = jam.split(":");
+        int jamInt = Integer.parseInt(waktu[0]);
+        int menitInt = Integer.parseInt(waktu[1]);
+    
+        return jamInt >= 0 && jamInt < 24 && menitInt >= 0 && menitInt < 60;
+    }
+    
 }
