@@ -132,16 +132,21 @@ public class ServiceMotor {
         if (jumlahData == 0) {
             System.out.println("Belum ada data.");
         } else {
-            int indexTerlama = 0;
+            int waktuTerlama = estimasiLama[0];
+    
             for (int i = 1; i < jumlahData; i++) {
-                if (estimasiLama[i] > estimasiLama[indexTerlama]) {
-                    indexTerlama = i;
+                if (estimasiLama[i] > waktuTerlama) {
+                    waktuTerlama = estimasiLama[i];
                 }
             }
+    
             System.out.println("\n--- Data dengan Waktu Pengerjaan Terlama ---");
-            System.out.println("Nama: " + namaPelanggan[indexTerlama] + ", Jam Masuk: " + jamMasuk[indexTerlama] +
-                               ", Lama: " + estimasiLama[indexTerlama] + " jam, Estimasi Selesai: " +
-                               estimasiSelesai[indexTerlama]);
+            for (int i = 0; i < jumlahData; i++) {
+                if (estimasiLama[i] == waktuTerlama) {
+                    System.out.println("Nama: " + namaPelanggan[i] + ", Jam Masuk: " + jamMasuk[i] +
+                                       ", Lama: " + estimasiLama[i] + " jam, Estimasi Selesai: " + estimasiSelesai[i]);
+                }
+            }
         }
     }
 
